@@ -1,6 +1,13 @@
 import React from "react";
-import { SafeAreaView, StatusBar, Text, FlatList } from "react-native";
+import {
+  SafeAreaView,
+  StatusBar,
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import Item from "./Item";
+import globalStyles from "../../styles";
 
 const services = [
   {
@@ -25,16 +32,19 @@ const services = [
 ];
 
 export default function Services() {
-
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyles.fill}>
       <StatusBar />
-      <Text>Serviços!</Text>
-      <FlatList
-        data={services}
-        renderItem={({ item }) => <Item {...item} />}
-        keyExtractor={({id}) => String(id)}
-      />
+      <KeyboardAvoidingView
+        style={globalStyles.fill}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <FlatList
+          data={services}
+          renderItem={({ item }) => <Item {...item} />}
+          keyExtractor={({ id }) => String(id)}
+        />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
