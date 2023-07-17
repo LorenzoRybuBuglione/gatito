@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList } from "react-native";
+
 import Item from "./Item";
-import DefaultScreen from "../../components/DefaultScreen";
 import CartStatus from "../../components/CartStatus";
 
 const services = [
@@ -36,13 +36,13 @@ export default function Cart() {
   );
 
   return (
-    <DefaultScreen>
+    <>
       <CartStatus total={total}/>
       <FlatList
         data={services}
         renderItem={({ item }) => <Item {...item} />}
         keyExtractor={({ id }) => String(id)}
       />
-    </DefaultScreen>
+    </>
   );
 }
